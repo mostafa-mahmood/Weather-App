@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/14a1e21579.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nanum+Gothic&family=Quicksand:wght@300..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="wrapper">
+        <form class="search-container">
+            <input type="text" placeholder="Enter city name, Latitude/Longitude, IP address" id="userInput" aria-label="Enter city name or IP address">
+            <button type="submit" class="search-btn" aria-label="Search" id="search">Search</button>
+        </form>
+
+        <section class="weather-data">
+            <div class="location-info">
+                <div class="location"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+                <div class="condition"></div>
+            </div>
+
+            <div class="temperature-info">
+                <div class="temperature"></div>
+                <div class="icon"></div>
+            </div>
+
+            <div class="additional-info">
+                <div class="cloud-cover"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div>
+                <div class="humidity"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
+                <div class="wind-speed"><i class="fa-solid fa-wind" aria-hidden="true"></i></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+</html>

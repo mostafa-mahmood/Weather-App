@@ -1,0 +1,154 @@
+* {
+          box-sizing: border-box;
+          padding: 0;
+          margin: 0;
+      }
+      
+      body {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          background-color: #111015;
+          color: #e4ebfa;
+          font-family: 'Montserrat', sans-serif;
+          padding: 1rem;
+      }
+      
+      .wrapper {
+          max-width: 50rem;
+          width: 100%;
+          background-color: #2f3c4f;
+          border-radius: 1rem;
+          padding: 1rem;
+      }
+      
+      .search-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+      }
+      
+      #userInput {
+          flex-grow: 1;
+          max-width: calc(100% - 80px);
+          height: 2rem;
+          padding: 1rem;
+          border: none;
+          border-top-left-radius: 10rem;
+          border-bottom-left-radius: 10rem;
+          background-color: #111015;
+          color: #e4ebfa;
+          font-size: 1rem;
+          font-weight: 700;
+          outline: none;
+      }
+      
+      .search-btn {
+          width: 70px;
+          height: 2rem;
+          padding: 0 1rem;
+          background-color: #e4ebfa;
+          border-top-right-radius: 10rem;
+          border-bottom-right-radius: 10rem;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: black;
+          transition: background-color 0.3s ease, color 0.3s ease;
+          white-space: nowrap;
+          font-weight: 600;
+          font-family: 'Montserrat', sans-serif;
+      }
+      
+      .search-btn:hover {
+          background-color: #111015;
+          color: #e4ebfa;
+          cursor: pointer;
+      }
+      
+      .weather-data {
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: auto;
+          min-height: 19rem;
+      }
+      
+      .location-info, .temperature-info, .additional-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem 0;
+          flex-wrap: wrap;
+      }
+      
+      .location {
+          font-size: 1.5rem;
+          margin-right: 1rem;
+      }
+      
+      .location i {
+          padding-right: 0.5rem;
+      }
+      
+      .condition {
+          font-size: 1.5rem;
+      }
+      
+      .temperature {
+          font-size: 3.5rem;
+          margin-right: 1rem;
+      }
+      
+      .icon {
+          font-size: 1rem;
+      }
+      
+      .additional-info {
+          justify-content: space-around;
+      }
+      
+      .additional-info div {
+          height: 3rem;
+          width: calc(33% - 0.5rem);
+          max-width: 10rem;
+          background-color: #506079;
+          border-radius: 20rem;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+          padding: 0 0.5rem;
+      }
+      
+      /* Media query for smaller screens */
+      @media (max-width: 600px) {
+          .location-info, .temperature-info {
+              flex-direction: column;
+              align-items: flex-start;
+          }
+      
+          .additional-info {
+              flex-direction: column;
+          }
+      
+          .additional-info div {
+              width: 100%;
+              max-width: none;
+          }
+      
+          .location, .condition, .temperature, .icon {
+              font-size: 1.2rem;
+              margin-bottom: 0.5rem;
+          }
+      
+          .temperature {
+              font-size: 3rem;
+          }
+      }
+      
