@@ -1,13 +1,13 @@
-const apiKey = '02cf48b277d14d61a38133434240708';
+const apiKey = 'Your API Key Goes Here';
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 const searchBtn = document.getElementById("search");
 
 searchBtn.onclick = (event) => {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
     search();
 };
 
-// Initialize weather data for Cairo when the page loads
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeWeather('Cairo');
 });
