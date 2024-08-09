@@ -1,12 +1,12 @@
-const apiKey = 'Your API key goes here';
+const apiKey = '02cf48b277d14d61a38133434240708';
 const searchBtn = document.getElementById("search");
 
 searchBtn.onclick = (event) => {
-          event.preventDefault();
-          search();
+    event.preventDefault(); // Prevent form submission
+    search();
 };
 
-
+// Initialize weather data for Cairo when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     initializeWeather('Cairo');
 });
@@ -15,32 +15,39 @@ async function search() {
     try {
         const userInput = document.getElementById("userInput");
         const input = userInput.value;
+        if (!input.trim()) {
+            throw new Error("Please enter a city name, latitude/longitude, or IP address.");
+        }
         const url = createUrl(input);
         const data = await fetchData(url);
         const extractedData = extractWeatherData(data);
         manipulateDom(extractedData);
+        hideErrorMessage(); // Hide error message if successful
     } catch (error) {
         console.error('Error fetching weather data:', error);
+        showErrorMessage(error.message);
     }
 }
 
 function createUrl(city) {
-    return `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
+    return `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
 }
 
 async function fetchData(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`${response.status} ${response.statusText}`);
+    const response = await fetch(url);
+    if (!response.ok) {
+        if (response.status === 400) {
+            throw new Error("Location not found. Please check your input and try again.");
         }
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching data:', error);
+        throw new Error(`Failed to fetch weather data. Please try again later.`);
     }
+    return await response.json();
 }
 
 function extractWeatherData(data) {
+    if (!data.location || !data.current) {
+        throw new Error("Invalid data received from the weather API.");
+    }
     return {
         countryName: data.location.country,
         cityName: data.location.name,
@@ -79,5 +86,21 @@ async function initializeWeather(city) {
         manipulateDom(extractedData);
     } catch (error) {
         console.error('Error initializing weather data:', error);
+        showErrorMessage("Failed to load initial weather data. Please try searching for a city.");
+    }
+}
+
+function showErrorMessage(message) {
+    const errorElement = document.getElementById("error-message");
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+    }
+}
+
+function hideErrorMessage() {
+    const errorElement = document.getElementById("error-message");
+    if (errorElement) {
+        errorElement.style.display = "none";
     }
 }
