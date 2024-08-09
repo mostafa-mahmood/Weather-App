@@ -125,6 +125,16 @@
           margin-bottom: 0.5rem;
           padding: 0 0.5rem;
       }
+      .error-message {
+        color: #721c24;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
       
       /* Media query for smaller screens */
       @media (max-width: 600px) {
