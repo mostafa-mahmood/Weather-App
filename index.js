@@ -1,4 +1,4 @@
-const apiKey = '02cf48b277d14d61a38133434240708';
+const apiKey = 'Your API KEY goes here';
 const searchBtn = document.getElementById("search");
 
 searchBtn.onclick = (event) => {
