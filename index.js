@@ -1,10 +1,9 @@
-const apiKey = 'Your API Key Goes Here';
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+const apiKey = 'Your API key goes here';
 const searchBtn = document.getElementById("search");
 
 searchBtn.onclick = (event) => {
-    event.preventDefault();
-    search();
+          event.preventDefault();
+          search();
 };
 
 
@@ -14,38 +13,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function search() {
     try {
-        const userInput = document.getElementById("userInput").value;
-        if (!userInput.trim()) {
-            alert("Please enter a city name or IP address.");
-            return;
-        }
-        const url = createUrl(userInput);
+        const userInput = document.getElementById("userInput");
+        const input = userInput.value;
+        const url = createUrl(input);
         const data = await fetchData(url);
-        if (data) {
-            const extractedData = extractWeatherData(data);
-            manipulateDom(extractedData);
-        } else {
-            console.error('No data received');
-        }
+        const extractedData = extractWeatherData(data);
+        manipulateDom(extractedData);
     } catch (error) {
         console.error('Error fetching weather data:', error);
     }
 }
 
 function createUrl(city) {
-    return `${proxyUrl}https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
+    return `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
 }
 
 async function fetchData(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`${response.status} ${response.statusText}`);
         }
         return await response.json();
     } catch (error) {
-        console.error("Error fetching weather data:", error);
-        return null; // Return null if there’s an error
+        console.error('Error fetching data:', error);
     }
 }
 
@@ -84,12 +75,8 @@ async function initializeWeather(city) {
     try {
         const url = createUrl(city);
         const data = await fetchData(url);
-        if (data) {
-            const extractedData = extractWeatherData(data);
-            manipulateDom(extractedData);
-        } else {
-            console.error('No data received during initialization');
-        }
+        const extractedData = extractWeatherData(data);
+        manipulateDom(extractedData);
     } catch (error) {
         console.error('Error initializing weather data:', error);
     }
